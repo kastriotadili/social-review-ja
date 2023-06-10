@@ -15,6 +15,7 @@ if ( ! defined('ABSPATH') ) exit;
  * Domain Path:       /languages
  */
 
+$base_path = plugin_dir_path( __FILE__ );
 
 
 class SocialReviewsJa 
@@ -51,6 +52,8 @@ class SocialReviewsJa
         
         if ( !get_option( 'social_reviews_api_key' )) {
             update_option( 'social_reviews_api_key', null);
+            require_once( plugin_dir_path( __FILE__ ) . 'includes/Db.php');
+            JaDB::is_table_exists();
         }
     }
 
@@ -65,6 +68,8 @@ class SocialReviewsJa
     public function deactivationHook() 
     {
         delete_option( 'social_reviews_api_key' );
+        require_once( plugin_dir_path( __FILE__ ). 'includes/Db.php');
+        JaDB::dropDbTable();
     }
 
     /**
@@ -77,11 +82,14 @@ class SocialReviewsJa
     public function uninstallHook()
     {
         delete_option( 'social_reviews_api_key' );
+        require_once( plugin_dir_path( __FILE__ ). 'includes/Db.php');
+        JaDB::dropDbTable();
     }
 
     public function admin_settings_menu()
     {
         add_options_page( 'Social Reviews JA', 'Social Reviews JA', 'manage_options', 'social_reviews_ja', array( $this, 'ja_admin_settings') );
+    
     }
 
     public function ja_admin_settings() 
