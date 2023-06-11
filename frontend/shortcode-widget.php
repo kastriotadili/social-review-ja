@@ -26,3 +26,7 @@ if ($reviews) {
 } else {
     echo 'No reviews found.';
 }
+
+?>
+
+<!-- Do html/css designs below <-->
