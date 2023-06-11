@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' )) exit;
+
 class JaDB
 {
 
@@ -19,11 +21,11 @@ class JaDB
 
         $sql = "CREATE TABLE $table_name (
         id int(11) NOT NULL AUTO_INCREMENT,
-        review_stars int(255) NOT NULL,
-        reviewer_img varchar(500) NOT NULL,
-        review_content text NOT NULL,
-        reviewer_name varchar(255) NOT NULL,
-        review_date datetime NOT NULL,
+        review_stars int(255) NULL,
+        reviewer_img varchar(500)  NULL,
+        review_content text  NULL,
+        reviewer_name varchar(255) NULL,
+        review_date varcahr(255) NULL,
         PRIMARY KEY (id)
       ) $charset_collate;";
 
@@ -32,9 +34,31 @@ class JaDB
         return true;
     }
 
+
+    public static function fetchReviews() 
+    {
+         /** Make call to DB to get reviews from DB */
+        $reviews = self::$wpdb->get_results("SELECT * FROM " . self::$wpdb->prefix . 'reviews' );
+        return $reviews;
+    }
+
     public static function dropDbTable()
     {
         self::$wpdb->query("DROP TABLE IF EXISTS " . self::$wpdb->prefix . "reviews");
+    }
+
+    public static function insertReview($name, $body, $rating, $img, $date)
+    {
+        self::$wpdb->insert(
+            self::$wpdb->prefix . "reviews",
+            array(
+                'review_stars' => $rating,
+                'reviewer_img' => $img,
+                'review_content' => $body,
+                'reviewer_name' => $name,
+                'review_date' => $date
+            )
+        );
     }
 
     public static function is_table_exists()
