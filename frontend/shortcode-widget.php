@@ -29,4 +29,26 @@ if ($reviews) {
 
 ?>
 
-<!-- Do html/css designs below <-->
+<!-- Do html/css designs below 
+
+<div class="reviews">
+  <h2>Customer Reviews</h2>
+  <ul class="review-list">
+    <li class="review">
+      <div class="review-author">John Doe</div>
+      <div class="review-rating">★★★★★</div>
+      <div class="review-content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae elit vel risus tincidunt aliquet.</p>
+      </div>
+    </li>
+    <li class="review">
+      <div class="review-author">Jane Smith</div>
+      <div class="review-rating">★★★☆☆</div>
+      <div class="review-content">
+        <p>Nullam et turpis et ex vestibulum fringilla ac eu sapien. Donec tincidunt arcu at lobortis venenatis.</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+-->
